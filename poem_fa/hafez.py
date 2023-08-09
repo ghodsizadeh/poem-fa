@@ -1,6 +1,8 @@
 import sqlite3
 import pathlib
-
+HAFEZ_CAT_ID = 24
+MIN_ID = 2130
+MAX_ID = 2624
 class Hafez:
     def __init__(self) -> None:
         db_path = pathlib.Path(__file__).parent.absolute() / 'hafez.db'
@@ -10,13 +12,14 @@ class Hafez:
         self.ghazal = None
 
     def get_random_ghazal(self):
-        HAFEZ_CAT_ID = 24
-        query = f'select id from poem where cat_id = {HAFEZ_CAT_ID} order by Random() limit 1'
+
+        query = f'select id from poem where cat_id = {HAFEZ_CAT_ID} and id between {MIN_ID} and {MAX_ID} order by Random() limit 1'
         self.cursor.execute(query)
         self.ghazal = self.cursor.fetchone()[0]
-        return self.ghazal
+        return self.ghazal - MIN_ID + 1
 
     def get_ghazal(self,ghazal_id):
+        ghazal_id = ghazal_id + MIN_ID - 1
         query = "select vorder, position , text from verse  where poem_id = ? order by vorder"
         self.cursor.execute(query, (ghazal_id,))
         return self.cursor.fetchall()
