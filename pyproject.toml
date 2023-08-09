@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "poem-fa"
+version = "0.1.0"
+description = ""
+authors = ["Mehdi Ghodsizadeh <m.ghodsizadeh@geophy.com>"]
+readme = "README.md"
+packages = [{include = "poem_fa"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
