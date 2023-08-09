@@ -4,8 +4,9 @@ app = typer.Typer()
 
 
 @app.command()
-def fal(name: str):
-    print(f"Hello {name}")
+def fal():
+    Hafez().fal()
+
 
 @app.command()
 def ghazal(number: int):
